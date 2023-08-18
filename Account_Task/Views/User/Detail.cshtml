@@ -1,0 +1,58 @@
+﻿@model users
+@{
+    ViewData["Title"] = "Detail";
+}
+<h1>User Detail</h1>
+<form asp-action="Create">
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Username" ></label>
+        <input asp-for="Username" readonly class="form-control" />
+        <span class="text-danger" asp-validation-for="Username"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label"  asp-for="Email"></label>
+        <input asp-for="Email" readonly class="form-control" />
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label"  asp-for="First_Name"></label>
+        <input asp-for="First_Name" readonly class="form-control" />
+        <span class="text-danger" asp-validation-for="First_Name"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label"  asp-for="Last_Name"></label>
+        <input asp-for="Last_Name" readonly class="form-control" />
+        <span class="text-danger" asp-validation-for="Last_Name"></span>
+
+
+    </div>
+    <div class="form-group">
+        <label class="col-form-label"  asp-for="Date_Of_Birth"></label>
+        <input asp-for="Date_Of_Birth" readonly class="form-control" />
+        <span class="text-danger" asp-validation-for="Date_Of_Birth"></span>
+
+
+    </div>
+    <div class="form-group">
+        <label class="col-form-label"  asp-for="DateTime_UTC"></label>
+        <input asp-for="DateTime_UTC" readonly class="form-control" />
+        <span class="text-danger" asp-validation-for="DateTime_UTC"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label"  asp-for="Update_DateTime_UTC"></label>
+        <input asp-for="Update_DateTime_UTC" readonly class="form-control" />
+        <span class="text-danger" asp-validation-for="Update_DateTime_UTC"></span>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-form-label"  asp-for="Server_DateTime"></label>
+        <input asp-for="Server_DateTime" readonly class="form-control" />
+        <span class="text-danger" asp-validation-for="Server_DateTime"></span>
+    </div>
+
+    <input type="submit" value="Edite" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary" />
+
+    <a asp-action="Index" class="btn btn-light">Back to List</a>
+</form>
+
