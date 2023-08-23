@@ -30,7 +30,7 @@ namespace Account_Task.BLL.Repositories
 
         public bool IsUsernameUnique(string username,int id )
         {
-            // Check your data  (e.g., database) for existing usernames
+            
             bool isUnique = _context.Users.Any(u => u.Username == username&&u.Id!=id );
             return isUnique;
         } 
@@ -40,10 +40,10 @@ namespace Account_Task.BLL.Repositories
             return isUnique;
         }
 
-        public async Task<int> getId(string userNumber)
+        public int getId(string userNumber)
         {
             int id = 0;
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == userNumber);
+            var user =  _context.Users.FirstOrDefault(u => u.Username == userNumber);
             if (user != null)
             {
                 id = user.Id;

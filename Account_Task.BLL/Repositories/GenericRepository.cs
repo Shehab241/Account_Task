@@ -18,9 +18,9 @@ namespace Account_Task.BLL.Repositories
         {
             _context = context;
         }
-        public async Task Add(T item)
+        public void Add(T item)
         {
-           await _context.Set<T>().AddAsync(item);
+            _context.Set<T>().AddAsync(item);
             
         }
 
@@ -30,18 +30,18 @@ namespace Account_Task.BLL.Repositories
   
         }
 
-        public async Task<T> Get(int? id)
+        public  T Get(int? id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            return  _context.Set<T>().Find(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public  IEnumerable<T> GetAll()
         {
             if (typeof(T) == typeof(Account))
             {
-              return (IEnumerable<T>) await _context.Account.Include(A=>A.Users).ToListAsync();
+              return (IEnumerable<T>)  _context.Account.Include(A=>A.Users).ToList();
             }else
-                return await _context.Set<T>().ToListAsync();
+                return _context.Set<T>().ToList();
         }
 
        

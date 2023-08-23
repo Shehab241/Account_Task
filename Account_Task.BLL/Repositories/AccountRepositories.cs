@@ -39,10 +39,10 @@ namespace Account_Task.BLL.Repositories
             bool isvaild= accountNumber.Length == 7 && accountNumber.All(char.IsDigit);
             return isvaild;
         }
-        public async Task<int> getId(string accountNumber)
+        public  int getId(string accountNumber)
         {
             int id = 0;
-            var user = await _context.Account.FirstOrDefaultAsync(u => u.Account_Number == accountNumber);
+            var user =  _context.Account.FirstOrDefault(u => u.Account_Number == accountNumber);
             if (user != null)
             {
                 id = user.Id;

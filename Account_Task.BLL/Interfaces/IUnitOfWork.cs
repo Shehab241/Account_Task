@@ -11,7 +11,7 @@ namespace Account_Task.BLL.Interfaces
         public IAccountRepositories accountRepositories { get; set; }
 
         public IUsersRepositories usersRepositories { get; set; }
-        Task<int> Compelete();
+        int Compelete();
 
     }
 }

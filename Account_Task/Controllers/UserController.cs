@@ -26,12 +26,12 @@ namespace Account_Task.Controllers
             
         }
 
-        public async Task<IActionResult> Index(string searchValue)
+        public  IActionResult Index(string searchValue)
         {
           
             if (string.IsNullOrEmpty(searchValue))
             {
-                var user = await _unitOfWork.usersRepositories.GetAll();
+                var user =  _unitOfWork.usersRepositories.GetAll();
                 
                 return View(user);
             }
@@ -52,7 +52,7 @@ namespace Account_Task.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Create(users users,string SaveContinue)
+        public IActionResult Create(users users,string SaveContinue)
         {
             if (_unitOfWork.usersRepositories.IsUsernameUnique(users.Username,users.Id))
             {
@@ -66,33 +66,33 @@ namespace Account_Task.Controllers
             }
             else
             { 
-                await _unitOfWork.usersRepositories.Add(users);
-                await _unitOfWork.Compelete();
+                 _unitOfWork.usersRepositories.Add(users);
+                 _unitOfWork.Compelete();
                 return RedirectToAction(nameof(Index));
             }
 
             
         }
 
-        public async Task<IActionResult> Detail(int? id,string Viewname="Detail")
+        public  IActionResult Detail(int? id,string Viewname="Detail")
         {
             if(id is  null)
                 return BadRequest();
-            var user = await _unitOfWork.usersRepositories.Get(id.Value);
+            var user =  _unitOfWork.usersRepositories.Get(id.Value);
             if(user == null)
                 return NotFound();
             return View(Viewname, user);
         }
-        public async Task<IActionResult> Edit( int? id)
+        public IActionResult Edit( int? id)
         {
            
-            return await Detail(id,"Edit");
+            return  Detail(id,"Edit");
            
         }
 
         
         [HttpPost]
-        public async Task<IActionResult> Edit(users users, string? SaveContinue)
+        public  IActionResult Edit(users users, string? SaveContinue)
         {
             if (ModelState.IsValid)
             {
@@ -111,11 +111,11 @@ namespace Account_Task.Controllers
                        if (!string.IsNullOrEmpty(SaveContinue))
                        {
                            _unitOfWork.usersRepositories.Update(users);
-                         await _unitOfWork.Compelete();
+                           _unitOfWork.Compelete();
                            return View(users);
                        }
                             _unitOfWork.usersRepositories.Update(users);
-                       await _unitOfWork.Compelete();
+                            _unitOfWork.Compelete();
                     return RedirectToAction(nameof(Index));
                    }
                    catch (Exception ex)
@@ -128,23 +128,23 @@ namespace Account_Task.Controllers
             return View(users);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
-            return await Detail(id, "Delete");
+            return  Detail(id, "Delete");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(users users)
+        public  IActionResult Delete(users users)
         {
           
             try
             {
                 users.Status = Status.Deleted;
-                var rec =await _unitOfWork.accountRepositories.Get(users.Id);
+                var rec =_unitOfWork.accountRepositories.Get(users.Id);
                 if(rec != null) { rec.Status = Status.Deleted; }
                 
                 _unitOfWork.usersRepositories.Update(users);
-                await _unitOfWork.Compelete();
+                _unitOfWork.Compelete();
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

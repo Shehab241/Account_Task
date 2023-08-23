@@ -23,8 +23,8 @@ namespace Account_Task.BLL
             usersRepositories=new UserRepositories(context);
         }
 
-        public async Task<int> Compelete()
-        =>   await _context.SaveChangesAsync();
+        public int Compelete()
+        =>    _context.SaveChanges();
 
         public void Dispose()
         =>_context.Dispose();

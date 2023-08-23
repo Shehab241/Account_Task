@@ -14,7 +14,7 @@ namespace Account_Task.BLL.Interfaces
 
         public bool IsUsernameUnique(string username,int id );
         public bool IsEmailUnique(string email,int id);
-        public Task<int> getId(string userNumber);
+        public int getId(string userNumber);
 
     }
 }

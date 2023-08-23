@@ -14,6 +14,6 @@ namespace Account_Task.BLL.Interfaces
 
         public bool AccountNumberValid(string accountNumber);
         public bool IsAccountNumberUnique(string accountNumber);
-        public Task<int> getId(string accountNumber);
+        public int getId(string accountNumber);
     }
 }

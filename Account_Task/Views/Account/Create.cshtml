@@ -1,12 +1,13 @@
 ﻿@using Account_Task.BLL.Interfaces;
-
+@inject IUsersRepositories User
+@inject IUnitOfWork unitOfWork
 @model Account
 @{
     ViewData["Title"] = "Create";
 }
 @{
-   var User = new SelectList(ViewBag.User, "Id", "Username");
-    //var User = new SelectList(unitOfWork.usersRepositories.GetAll(, "Id", "Username");
+  // var User = new SelectList(ViewBag.User, "Id", "Username");
+    var User = new SelectList(unitOfWork.usersRepositories.GetAll(), "Id", "Username");
 }
 <h1>Create New Account</h1>
 <br />

@@ -26,12 +26,12 @@ namespace Account_Task.Controllers
             _usersRepositories = usersRepositories;
         }
 
-        public async Task<IActionResult> Index(string searchValue)
+        public  IActionResult Index(string searchValue)
         {
 
             if (string.IsNullOrEmpty(searchValue))
             {
-                var account = await _unitOfWork.accountRepositories.GetAll();
+                var account =  _unitOfWork.accountRepositories.GetAll();
 
                 return View(account);
             }
@@ -62,7 +62,7 @@ namespace Account_Task.Controllers
         [HttpPost]
 
         
-        public async Task<IActionResult> Create(Account account)
+        public IActionResult Create(Account account)
         {
             if (!_unitOfWork.accountRepositories.AccountNumberValid(account.Account_Number))
             {
@@ -73,13 +73,13 @@ namespace Account_Task.Controllers
                  if (_unitOfWork.accountRepositories.IsAccountNumberUnique(account.Account_Number))
                  {
                     
-                    int id = await _unitOfWork.accountRepositories.getId(account.Account_Number);
-                    var rec= await _unitOfWork.accountRepositories.Get(id);
+                    int id =  _unitOfWork.accountRepositories.getId(account.Account_Number);
+                    var rec=  _unitOfWork.accountRepositories.Get(id);
                     if (rec.Status == Status.Deleted)
                     {
                        
-                        await _unitOfWork.accountRepositories.Add(account);
-                        await _unitOfWork.Compelete();
+                        _unitOfWork.accountRepositories.Add(account);
+                        _unitOfWork.Compelete();
                     return RedirectToAction(nameof(Index));
                      }
                 else
@@ -90,36 +90,36 @@ namespace Account_Task.Controllers
 
                     }
                 }
-                await _unitOfWork.accountRepositories.Add(account);
-                await _unitOfWork.Compelete();
+                 _unitOfWork.accountRepositories.Add(account);
+                 _unitOfWork.Compelete();
                 return RedirectToAction(nameof(Index));
             }
 
-        public async Task<IActionResult> Detail(int? id, string Viewname = "Detail")
+        public IActionResult Detail(int? id, string Viewname = "Detail")
         {
             if (id is null)
                 return BadRequest();
-            var account = await _unitOfWork.accountRepositories.Get(id.Value);
+            var account =  _unitOfWork.accountRepositories.Get(id.Value);
             if (account == null)
                 return NotFound();
             return View(Viewname, account);
         }
-        public async Task<IActionResult> Edit(int? id)
+        public  IActionResult Edit(int? id)
         {
            
-            ViewBag.User = await _unitOfWork.usersRepositories.GetAll();
-            return await Detail(id, "Edit");
+            ViewBag.User =  _unitOfWork.usersRepositories.GetAll();
+            return  Detail(id, "Edit");
              
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Account account)
+        public  IActionResult Edit(Account account)
         {
 
                 try
                 {
                     _unitOfWork.accountRepositories.Update(account);
-                    await _unitOfWork.Compelete();
+                    _unitOfWork.Compelete();
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
@@ -132,13 +132,13 @@ namespace Account_Task.Controllers
             return View(account);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public  IActionResult Delete(int? id)
         {
-            return await Detail(id, "Delete");
+            return Detail(id, "Delete");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(Account account)
+        public  IActionResult Delete(Account account)
         {
             
             try
@@ -146,7 +146,7 @@ namespace Account_Task.Controllers
                 account.Status=Status.Deleted;
                 
                 _unitOfWork.accountRepositories.Update(account);
-               await _unitOfWork.Compelete();
+                _unitOfWork.Compelete();
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
