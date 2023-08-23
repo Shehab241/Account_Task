@@ -10,42 +10,52 @@ using System.Threading.Tasks;
 
 namespace Account_Task.BLL.Repositories
 {
-    public class UserRepositories : IUsersRepositories
-        
+    public class UserRepositories : GenericRepository<users>, IUsersRepositories
+
     {
         private readonly ApplicationContext _context;
 
-        public UserRepositories(ApplicationContext context)
+        public UserRepositories(ApplicationContext context) : base(context)
         {
             _context = context;
         }
-        public int Add(users item)
+
+        public IQueryable<users> searchUser(string searchValue)
+
+        => _context.Users.Where(u => u.Email.ToLower(). Contains(searchValue.ToLower())
+                                   || u.Username.ToLower().Contains(searchValue.ToLower())
+                                    ||u.Id.ToString().Contains(searchValue.ToLower())
+                                   
+            );
+
+        public bool IsUsernameUnique(string username,int id )
         {
-            _context.Users.Add(item);
-             return _context.SaveChanges();
+            // Check your data  (e.g., database) for existing usernames
+            bool isUnique = _context.Users.Any(u => u.Username == username&&u.Id!=id );
+            return isUnique;
+        } 
+        public bool IsEmailUnique(string email,int id )
+        {
+            bool isUnique = _context.Users.Any(u => u.Email == email && u.Id != id);
+            return isUnique;
         }
 
-        public void Delete(users item)
+        public async Task<int> getId(string userNumber)
         {
-            _context.Users.Remove(item);
+            int id = 0;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == userNumber);
+            if (user != null)
+            {
+                id = user.Id;
+            }
+            return id;
         }
 
-        public users Get(int id)
-        {
-            return _context.Users.Find(id);
-        }
 
-        public IEnumerable<users> GetAll()
-        {
-            return _context.Users.ToList();
-        }
 
-        public int Update(users item)
-        {
-            _context.Users.Update(item);
-            return _context.SaveChanges() ;
-        }
 
-       
+
+
+
     }
 }

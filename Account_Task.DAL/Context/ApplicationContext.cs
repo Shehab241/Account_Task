@@ -16,7 +16,6 @@ namespace Account_Task.DAL.Context
         
         }
         
-        
         public DbSet<users> Users { get; set; }
         public DbSet<Account> Account { get; set; }
     }

@@ -1,4 +1,5 @@
 
+using Account_Task.BLL;
 using Account_Task.BLL.Interfaces;
 using Account_Task.BLL.Repositories;
 using Account_Task.DAL.Context;
@@ -19,6 +20,8 @@ namespace Account_Task
                 options.UseSqlServer("Server= .; Database=AccountDb;Trusted_Connection=true;MultipleActiveResultSets=true;");
             });
             builder.Services.AddScoped<IUsersRepositories, UserRepositories>();
+            //builder.Services.AddScoped<IAccountRepositories, AccountRepositories>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Account_Task.DAL.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,14 +11,13 @@ namespace Account_Task.DAL.Models
     public class Account
     {
         public int Id { get; set; }
-        public int User_ID { get; set; }
+        public int? UsersId { get; set; }
         public users Users { get; set; }
-        [Required(ErrorMessage = "Server_DateTime is required !! ")]
-        public DateTime Server_DateTime { get; set; }
-        [Required(ErrorMessage = "DateTime_UTC is required !! ")]
-        public DateTime DateTime_UTC { get; set; }
-        [Required(ErrorMessage = "Update_DateTime_UTC is required !! ")]
-        public DateTime Update_DateTime_UTC { get; set; }
+        public DateTime Server_DateTime { get; set; } = DateTime.Now;
+        [Required]
+        public DateTime DateTime_UTC { get; set; } = DateTime.UtcNow;
+        [Required]
+        public DateTime Update_DateTime_UTC { get; set; } = DateTime.UtcNow;
 
         [Required(ErrorMessage = "Account_Number is required !! ")]
         public string Account_Number { get; set; }
@@ -25,9 +25,9 @@ namespace Account_Task.DAL.Models
         [DataType(DataType.Currency)]
         public decimal Balance { get; set; }
         [Required(ErrorMessage = "Currency is required !! ")]
-        public string Currency { get; set; }
+        public Currency Currency { get; set; }
         [Required(ErrorMessage = "Status is required !! ")]
-        public int Status { get; set; }
+        public Status Status { get; set; }
 
     }
 }

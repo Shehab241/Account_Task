@@ -37,9 +37,8 @@ namespace Account_Task.DAL.Migrations
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateTime_UTC")
                         .HasColumnType("datetime2");
@@ -53,10 +52,7 @@ namespace Account_Task.DAL.Migrations
                     b.Property<DateTime>("Update_DateTime_UTC")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("User_ID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
+                    b.Property<int?>("UsersId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -117,9 +113,7 @@ namespace Account_Task.DAL.Migrations
                 {
                     b.HasOne("Account_Task.DAL.Models.users", "Users")
                         .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsersId");
 
                     b.Navigation("Users");
                 });

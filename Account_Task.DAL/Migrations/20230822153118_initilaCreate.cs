@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Account_Task.DAL.Migrations
 {
-    public partial class AccountTask : Migration
+    public partial class initilaCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,14 +37,13 @@ namespace Account_Task.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    User_ID = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<int>(type: "int", nullable: true),
                     Server_DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateTime_UTC = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Update_DateTime_UTC = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Account_Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Currency = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Currency = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -54,8 +53,7 @@ namespace Account_Task.DAL.Migrations
                         name: "FK_Account_Users_UsersId",
                         column: x => x.UsersId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

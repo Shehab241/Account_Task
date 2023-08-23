@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Account_Task.BLL.Interfaces
 {
-    public interface IUsersRepositories 
+    public interface IUsersRepositories :IGenericRepository<users>
     {
-        IEnumerable <users> GetAll();
+    
+    public IQueryable<users> searchUser(string searchValue);
 
-        int Add(users item);
+        public bool IsUsernameUnique(string username,int id );
+        public bool IsEmailUnique(string email,int id);
+        public Task<int> getId(string userNumber);
 
-        int Update(users item);
-        users Get(int id);
-        void Delete(users item);
     }
 }

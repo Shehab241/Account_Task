@@ -1,59 +1,59 @@
-﻿
-@model users
+﻿@model users
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Delete";
 }
 
-<h1>Create New User</h1>
-<br />
-<br />
-<form asp-action="Create">
-    
+<h1>Are you Sure to Delete??</h1>
+
+
+<form asp-action="Delete">
+
+  
     <div class="form-group">
         <label class="col-form-label" asp-for="Username"></label>
-        <input asp-for="Username" class="form-control" />
+        <input asp-for="Username" readonly class="form-control" />
         <span class="text-danger" asp-validation-for="Username"></span>
     </div>
     <div class="form-group">
         <label class="col-form-label" asp-for="Email"></label>
-        <input asp-for="Email" type="email" class="form-control" />
+        <input asp-for="Email" readonly class="form-control" />
         <span class="text-danger" asp-validation-for="Email"></span>
     </div>
     <div class="form-group">
         <label class="col-form-label" asp-for="First_Name"></label>
-        <input asp-for="First_Name" class="form-control" />
+        <input asp-for="First_Name" readonly class="form-control" />
         <span class="text-danger" asp-validation-for="First_Name"></span>
     </div>
     <div class="form-group">
         <label class="col-form-label" asp-for="Last_Name"></label>
-        <input asp-for="Last_Name" class="form-control" />
+        <input asp-for="Last_Name" readonly class="form-control" />
         <span class="text-danger" asp-validation-for="Last_Name"></span>
-    </div>
 
+
+    </div>
     <div class="form-group">
         <label class="col-form-label" asp-for="Date_Of_Birth"></label>
-        <input type="date" asp-for="Date_Of_Birth" class="form-control" />
+        <input type="date" asp-for="Date_Of_Birth" readonly class="form-control" />
         <span class="text-danger" asp-validation-for="Date_Of_Birth"></span>
-
     </div>
+    
     <div class="form-group">
         <label class="col-form-label" asp-for="Status"></label>
-        <select class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<Status>()">
+        <select readonly class="form-control" asp-for="Status" asp-items="Html.GetEnumSelectList<Status>()">
             <option value="">--Please Choose you Status </option>
         </select>
     </div>
-     <div class="form-group">
+    <div class="form-group">
         <label class="col-form-label" asp-for="Gender"></label>
-        <select class="form-control" asp-for="Gender" asp-items="Html.GetEnumSelectList<Genders>()">
+        <select readonly class="form-control" asp-for="Gender" asp-items="Html.GetEnumSelectList<Genders>()">
             <option value="">--Please Choose you Gender </option>
         </select>
     </div>
-  
-     
-    
 
-    <input type="submit" value="Submit" class="btn btn-primary" />
+    <br />
+        <br />
+        <br />
+        <input type="submit" value="Delete" class="btn btn-danger" />
 
-    <a asp-action="Index" class="btn btn-light">Back to List</a>
+    <a asp-action="Index" class="btn btn-light">Cancel</a>
 </form>
-

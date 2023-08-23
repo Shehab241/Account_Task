@@ -1,0 +1,44 @@
+﻿@model Account
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Are you Sure to Delete??</h1>
+
+
+<form asp-action="Delete">
+
+    <div class="form-group">
+        <label class="col-form-label" asp-for="UsersId"></label>
+        <input readonly asp-for="UsersId" class="form-control" />
+        <span class="text-danger" asp-validation-for="UsersId"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Account_Number"></label>
+        <input readonly asp-for="Account_Number" class="form-control" />
+        <span class="text-danger" asp-validation-for="Account_Number"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Balance"></label>
+        <input readonly asp-for="Balance" class="form-control" />
+        <span class="text-danger" asp-validation-for="Balance"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Currency"></label>
+        <input readonly asp-for="Currency" class="form-control" />
+        <span class="text-danger" asp-validation-for="Currency"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Status"></label>
+        <input readonly asp-for="Status" class="form-control" />
+        <span class="text-danger" asp-validation-for="Status"></span>
+
+
+    </div>
+        <br />
+        <br />
+        <br />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+
+    <a asp-action="Index" class="btn btn-light">Cancel</a>
+</form>
