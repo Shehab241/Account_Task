@@ -25,7 +25,7 @@ namespace Account_Task.BLL.Repositories
             
             return _context.Account.Where(u => u.Account_Number.Contains(searchValue.ToLower())
                                    || u.UsersId.ToString().Contains(searchValue)
-                                    || u.Id.ToString().Contains(searchValue));
+                                    || u.Id.ToString().Contains(searchValue)).Include(u=>u.Users);
             
         }
         public bool IsAccountNumberUnique(string accountNumber )

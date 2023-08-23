@@ -36,16 +36,3 @@ namespace Account_Task.DAL.Models
 
     }
 }
-/*
-  ID, int identity
- Server_DateTime, datetime required
- DateTime_UTC, datetime required
- Update_DateTime_UTC, datetime required
- Username, VARCHAR required
- Email, NVARCHAR required
- First_Name, NVARCHAR required
- Last_Name, NVARCHAR required
- Status, int required
- Gender, int required
- Date_Of_Birth, datetime required
- */

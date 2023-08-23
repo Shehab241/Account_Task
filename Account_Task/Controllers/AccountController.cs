@@ -13,17 +13,12 @@ namespace Account_Task.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        //private readonly IAccountRepositories _accountRepositories;
-        private readonly IUsersRepositories _usersRepositories;
-        //public Status status { get; set; }
-        public AccountController(/*IAccountRepositories accountRepositories*/ IUsersRepositories usersRepositories,
-            IUnitOfWork unitOfWork
-            )
+        
+        
+        
+        public AccountController( IUnitOfWork unitOfWork )
         {
-            _unitOfWork = unitOfWork;
-
-            //_accountRepositories = accountRepositories;
-            _usersRepositories = usersRepositories;
+            _unitOfWork = unitOfWork;     
         }
 
         public  IActionResult Index(string searchValue)
@@ -47,7 +42,7 @@ namespace Account_Task.Controllers
             try
             {
                 
-                 ViewBag.User = _usersRepositories.GetAll();
+                 ViewBag.User = _unitOfWork.usersRepositories.GetAll();
                 
                 return View();
             }

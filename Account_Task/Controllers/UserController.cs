@@ -13,17 +13,11 @@ namespace Account_Task.Controllers
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        //private IUsersRepositories _userRepositories;
-        //private readonly IAccountRepositories _accountRepositories;
+   
 
-        public UserController( IUnitOfWork unitOfWork
-           /* IUsersRepositories usersRepositories
-            ,IAccountRepositories accountRepositories*/)
+        public UserController( IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
-            //_userRepositories = usersRepositories;
-            //_accountRepositories = accountRepositories;
-            
+            _unitOfWork = unitOfWork;   
         }
 
         public  IActionResult Index(string searchValue)

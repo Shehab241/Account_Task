@@ -29,16 +29,7 @@ namespace Account_Task.DAL.Models
         [Required(ErrorMessage = "Status is required !! ")]
         public Status Status { get; set; }
 
+
+
     }
 }
-/*
-  ID, int identity
- User_ID, int
- Server_DateTime, datetime required
- DateTime_UTC, datetime required
- Update_DateTime_UTC, datetime required
- Account_Number, VARCHAR required
- Balance, money required
- Currency, VARCHAR required
- Status, int required
- */
